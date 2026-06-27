@@ -1,0 +1,309 @@
+# VOICE & EYE SOURCE-AVAILABLE NONCOMMERCIAL + COMMERCIAL-LICENSE (VEO-SA-NC-1.0)
+
+Copyright (c) 2025 Siyabonga Blessing Phakathi and The Voice and Eye of Bhambatha Incorporated
+
+All rights reserved.
+
+## Preamble
+
+This License grants broad rights for non-commercial use of the software source code. Commercial and enterprise uses are permitted only under a separate commercial license that requires payment of royalties as described below. This License implements an equitable model that rewards not only the original developer and supporting organizations but also the community of contributors who enhance and improve the software. This License is a source-available license and not an OSI-approved open-source license because it reserves the right to require a commercial license and royalty payment for commercial and enterprise deployment.
+
+## 1. Definitions
+
+**1.1. Licensed Software** means the source code, binaries, documentation, and other materials expressly identified as being licensed under this License.
+
+**1.2. You / Licensee** means any person or entity that exercises rights under this License.
+
+**1.3. Non-Commercial Use** means use, reproduction, modification, distribution, or display of the Licensed Software that is not primarily intended for or directed toward commercial advantage, monetary compensation, or commercial deployment. Examples include personal projects, academic research, open research, non-profit activities, internal evaluation, and internal testing conducted without revenue generation.
+
+**1.4. Commercial Use** means any use of the Licensed Software that: (a) is for or results in monetary compensation, revenue, fundraising, or other direct or indirect commercial advantage; (b) deploys the software in production as part of a product or service offered to third parties, including Software-as-a-Service (SaaS) offerings; (c) is used by a for-profit organization in support of its commercial activities, including internal use that supports revenue-generating operations; or (d) involves incorporation of the Licensed Software into any product, service, or offering that is sold, licensed, or otherwise provided to customers or users for consideration.
+
+**1.5. Developer** means Siyabonga Blessing Phakathi.
+
+**1.6. Company** means The Voice and Eye of Bhambatha Incorporated.
+
+**1.7. Foundation** means UFasimba DiGiTal FrienDs.
+
+**1.8. Contributor** means any individual or entity that has submitted a Contribution that has been accepted and merged into the Licensed Software and who has executed the Contributor License Agreement.
+
+**1.9. Contribution** means any original work of authorship, including source code, documentation, bug fixes, feature enhancements, or other copyrightable material, that is submitted by a Contributor and accepted for inclusion in the Licensed Software.
+
+**1.10. Contributor Pool** means the aggregate fund representing three percent (3%) of Gross Revenue from Commercial Use, distributed among all eligible Contributors in proportion to their Contribution Value as calculated under Section 4.6.
+
+**1.11. Contribution Value** means the quantitative measure of a Contributor's contribution to the Licensed Software, calculated using the methodology specified in Section 4.6.
+
+**1.12. Royalty** means the percentage of Gross Revenue specified in Section 4 payable for Commercial Use, totaling twelve percent (12%).
+
+**1.13. Gross Revenue** means the total revenue, receipts, or other consideration received by Licensee or its affiliates that is reasonably attributable to the Licensed Software, calculated before deductions for taxes, refunds, discounts, or expenses. Attribution shall be determined reasonably and in good faith by the parties based on the role and contribution of the Licensed Software to the revenue-generating activity.
+
+## 2. License Grants
+
+**2.1. Non-Commercial License Grant.** Subject to the terms and conditions of this License, the Licensor hereby grants You a worldwide, non-exclusive, royalty-free, perpetual (subject to termination provisions) license to use, reproduce, display, perform, modify, create derivative works of, and distribute the Licensed Software for Non-Commercial Use only. This grant includes the right to create and distribute derivative works for Non-Commercial Use, provided You retain all copyright notices and include a complete copy of this License with any distribution.
+
+**2.2. Commercial Use Restricted.** Commercial Use of the Licensed Software is expressly not permitted under the Non-Commercial License Grant in Section 2.1. Any Commercial Use requires a separate written Commercial License from the Licensor and payment of Royalty as set forth in Section 4 below.
+
+**2.3. Examples and Clarifications.** The following examples are illustrative and non-exhaustive:
+
+**Permitted without Commercial License:** Personal hobby projects, classroom assignments and educational coursework, academic and scientific research published openly, internal experimentation and testing without commercial deployment, non-profit community projects that generate no revenue, open-source contributions and collaborative development for non-commercial purposes.
+
+**Requires Commercial License and Royalty:** Use of the Licensed Software in a product sold or licensed to customers; embedding the Licensed Software in a commercial SaaS platform or cloud service; using the Licensed Software to provide commercial consulting, development, or managed services to third parties; incorporation into any for-profit product or service offering; internal use by a for-profit company where the Licensed Software supports or enables revenue-generating business operations or products.
+
+**2.4. Preservation of License Terms.** All copies and derivative works of the Licensed Software distributed under Section 2.1 must include this complete License and preserve all copyright, patent, trademark, and attribution notices.
+
+## 3. Contributions and Contributor Grants
+
+**3.1. Contributor License Agreement Required.** All Contributions from third parties are accepted only if the Contributor has executed the Voice & Eye Contributor License Agreement (VEO-CLA). The CLA grants the Licensor necessary rights to sublicense Contributions under this License and under separate Commercial Licenses, while establishing the Contributor's rights to participate in the Contributor Pool as specified in Section 4.6.
+
+**3.2. Contributor Rights to Royalty Pool.** Contributors who have executed the CLA and whose Contributions have been accepted and merged into the Licensed Software become eligible to receive distributions from the Contributor Pool in proportion to their Contribution Value. These rights are non-transferable except as specified in Section 4.8.
+
+**3.3. Contribution Acceptance.** The Licensor has sole discretion to accept or reject any Contribution. Acceptance of a Contribution does not create any employment, partnership, or agency relationship between the Contributor and the Licensor.
+
+## 4. Commercial Licensing and Royalties
+
+**4.1. Total Royalty Rate.** For any Commercial Use of the Licensed Software, Licensee must obtain a written Commercial License from the Licensor and shall pay a Royalty equal to twelve percent (12%) of Gross Revenue reasonably attributable to the Licensed Software.
+
+**4.2. Royalty Allocation.** The twelve percent (12%) Royalty shall be allocated as follows:
+
+- Three percent (3%) to Developer: Siyabonga Blessing Phakathi
+- Three percent (3%) to Company: The Voice and Eye of Bhambatha Incorporated
+- Three percent (3%) to Foundation: UFasimba DiGiTal FrienDs
+- Three percent (3%) to Contributor Pool: Distributed among all eligible Contributors in proportion to their Contribution Value
+
+### **Total Royalty: Twelve percent (12%) of Gross Revenue**
+
+**4.3. Gross Revenue Calculation.** Gross Revenue shall be calculated quarterly and shall include all revenue streams reasonably attributable to the Licensed Software, including but not limited to direct sales revenue, subscription fees, licensing fees, service fees, and any other monetary consideration received in connection with products or services that incorporate or depend upon the Licensed Software. The parties shall cooperate in good faith to determine reasonable attribution methodologies. In cases where the Licensed Software is one component of a larger product or service, attribution shall be based on the Licensed Software's functional contribution and importance to the overall offering.
+
+**4.4. Payment Terms and Reporting.** Within thirty (30) days after the end of each fiscal quarter in which Licensee engages in Commercial Use, Licensee shall deliver to Licensor a written report containing:
+
+- A calculation of Gross Revenue attributable to the Licensed Software for that quarter;
+- A detailed breakdown showing the methodology used to attribute revenue to the Licensed Software;
+- The calculated Royalty amount for each of the four beneficiaries (Developer, Company, Foundation, and Contributor Pool);
+- Any other information reasonably necessary to verify the calculation.
+
+Payment of the Royalty shall be made concurrently with submission of the quarterly report. Payments for Developer, Company, and Foundation shares shall be made directly to the designated bank accounts specified in Section 4.10 below. Payment of the Contributor Pool share shall be made to the Contributor Pool Account maintained by the Licensor for subsequent distribution to Contributors.
+
+**4.5. Currency and Payment Methods.** Payments shall be made in either South African Rand (ZAR) or United States Dollars (USD) as agreed in the Commercial License. All payments must be made via international wire transfer, electronic funds transfer, or other verifiable payment method acceptable to the Licensor.
+
+**4.6. Contributor Pool Distribution Methodology.** The Contributor Pool shall be distributed among eligible Contributors based on their proportional Contribution Value, calculated as follows:
+
+**4.6.1. Contribution Value Calculation.** Each Contributor's Contribution Value is calculated using a weighted formula that considers multiple factors:
+
+- **Lines of Code Contribution (40% weight):** Net lines of code added or meaningfully modified by the Contributor that remain in the current codebase, excluding auto-generated code, whitespace, and comments.
+
+- **Commit Impact Score (30% weight):** A qualitative assessment of each commit's impact on functionality, architecture, performance, security, or user experience, rated on a scale and assigned by project maintainers during code review and acceptance.
+
+- **Issue Resolution and Documentation (20% weight):** Credit for resolving filed issues, creating meaningful documentation, writing tests, and other non-code contributions that enhance the project's quality and usability.
+
+- **Longevity Factor (10% weight):** A time-based multiplier that rewards Contributors whose code remains actively used in the codebase over multiple releases, calculated based on the duration their contributions have been incorporated.
+
+**4.6.2. Calculation Period.** Contribution Value is calculated on a rolling twelve-month basis. Each quarter, the Contribution Value of all eligible Contributors is recalculated based on their contributions over the preceding twelve months. This ensures that the distribution reflects recent and sustained contribution patterns.
+
+**4.6.3. Minimum Eligibility Threshold.** To be eligible for Contributor Pool distribution in any given quarter, a Contributor must have a Contribution Value that represents at least 0.5% of the total Contribution Value across all Contributors. This threshold prevents administrative burden of distributing very small amounts and encourages meaningful contributions.
+
+**4.6.4. Individual Distribution Formula.** Each eligible Contributor's share of the Contributor Pool for a given quarter is calculated as:
+
+Contributor Share = (Contributor's Contribution Value / Total Contribution Value of All Eligible Contributors) × Contributor Pool Amount for that Quarter
+
+**4.6.5. Transparency and Record-Keeping.** The Licensor shall maintain detailed records of all Contribution Value calculations, including the factors used, the weights applied, and the resulting distributions. These records shall be made available to Contributors upon reasonable request. An automated dashboard showing current Contribution Value scores and estimated pool share shall be maintained and accessible to all Contributors who have executed the CLA.
+
+**4.7. Contributor Pool Payment Schedule.** Distributions from the Contributor Pool shall be made quarterly, within forty-five (45) days after receipt of Commercial License royalty payments from Licensees. Contributors shall receive payment for their proportional share of the Contributor Pool accumulated during that quarter.
+
+**4.8. Minimum Payment Threshold and Accumulation.** Individual Contributor payments below USD $50 (or ZAR equivalent) shall be held and accumulated until the Contributor's accumulated share reaches the minimum threshold. Accumulated amounts shall continue to accrue and shall be paid when the threshold is met or annually (whichever occurs first), provided the Contributor remains reachable and has provided valid payment information.
+
+**4.9. Contributor Payment Information.** Contributors must provide valid payment information through the official Contributor Portal maintained by the Licensor. Acceptable payment methods include international wire transfer, PayPal, TransferWise (Wise), or other internationally accessible payment platforms. Contributors are responsible for any fees charged by their payment provider. Contributors are also responsible for understanding and complying with tax obligations in their jurisdiction regarding royalty income.
+
+**4.10. Payment Instructions for Primary Beneficiaries.** Royalty payments for Developer, Company, and Foundation shares shall be made to the following designated accounts:
+
+**Developer (Siyabonga Blessing Phakathi) - 3% Share:**
+
+- Bank Name: [INSERT BANK NAME]
+- Account Holder: Siyabonga Blessing Phakathi
+- Account Number: [INSERT ACCOUNT NUMBER]
+- Branch Code: [INSERT BRANCH CODE]
+- SWIFT/BIC Code: [INSERT SWIFT CODE]
+- Currency: ZAR or USD as specified in Commercial License
+
+**Company (The Voice and Eye of Bhambatha Incorporated) - 3% Share:**
+
+- Bank Name: [INSERT BANK NAME]
+- Account Holder: The Voice and Eye of Bhambatha Incorporated
+- Account Number: [INSERT ACCOUNT NUMBER]
+- Branch Code: [INSERT BRANCH CODE]
+- SWIFT/BIC Code: [INSERT SWIFT CODE]
+- Currency: ZAR or USD as specified in Commercial License
+
+**Foundation (UFasimba DiGiTal FrienDs) - 3% Share:**
+
+- Bank Name: [INSERT BANK NAME]
+- Account Holder: UFasimba DiGiTal FrienDs
+- Account Number: [INSERT ACCOUNT NUMBER]
+- Branch Code: [INSERT BRANCH CODE]
+- SWIFT/BIC Code: [INSERT SWIFT CODE]
+- Currency: ZAR or USD as specified in Commercial License
+
+**Contributor Pool Account - 3% Share:**
+
+- Bank Name: [INSERT BANK NAME]
+- Account Holder: [INSERT ACCOUNT HOLDER NAME FOR POOL]
+- Account Number: [INSERT ACCOUNT NUMBER]
+- Branch Code: [INSERT BRANCH CODE]
+- SWIFT/BIC Code: [INSERT SWIFT CODE]
+- Currency: ZAR or USD as specified in Commercial License
+
+Licensee shall provide proof of payment (wire transfer confirmation or equivalent) with each quarterly report.
+
+**4.11. Audit Rights.** The Licensor may, not more than once per twelve (12) month period, engage an independent certified public accountant to audit Licensee's books, records, and systems concerning Gross Revenue attributable to the Licensed Software. Such audit shall be conducted upon at least thirty (30) days' advance written notice, during normal business hours, and at Licensor's expense. If any such audit discovers an underpayment of Royalty greater than five percent (5%) of the amount that should have been paid during the audited period, then in addition to paying the shortfall, Licensee shall reimburse Licensor for all reasonable costs and expenses of conducting the audit, including professional fees.
+
+**4.12. Late Payment and Interest.** Any Royalty payment not made when due shall accrue interest from the due date until paid in full at a rate equal to the lesser of: (a) the statutory late payment interest rate under the governing law specified in Section 10; or (b) two percent (2%) per month, compounded monthly.
+
+**4.13. Records Retention.** Licensee shall maintain complete and accurate books and records concerning all Gross Revenue calculations and Royalty payments for a period of at least five (5) years following the end of each fiscal year, and shall make such records available for audit in accordance with Section 4.11.
+
+## 5. Commercial License Application and Negotiation
+
+**5.1. How to Obtain a Commercial License.** To request a Commercial License for enterprise or commercial use, Licensee must contact the Licensor at the addresses specified below. The Licensor will provide standard Commercial License terms that may include specifications regarding currency, invoicing procedures and schedules, license duration, permitted fields of use, geographic scope, technical support and service level agreements, indemnification provisions, liability limitations, and volume-based pricing adjustments or minimum annual guarantees where appropriate.
+
+**5.2. Contact Information for Commercial Licensing:**
+
+**Primary Contact:**
+
+- Email: <datoxic0@gmail.com>
+- Email (alternate): <siyabphakathi@outlook.com>
+- Name: Siyabonga Blessing Phakathi
+- Company: The Voice and Eye of Bhambatha Incorporated
+- Foundation: UFasimba DiGiTal FrienDs
+
+**5.3. Customization of Commercial Terms.** Standard commercial terms may be tailored based on the nature of the proposed Commercial Use, business model, scale of deployment, and specific requirements of the Licensee. The Licensor reserves the right to negotiate Commercial License terms on a case-by-case basis while maintaining the fundamental Royalty structure specified in Section 4.2.
+
+**5.4. Evaluation Period.** Upon request, the Licensor may grant a limited evaluation period for prospective commercial licensees to assess the Licensed Software for Commercial Use, provided such evaluation does not constitute deployment in production or use that generates revenue.
+
+## 6. Trademarks and Branding
+
+**6.1. No Trademark License.** This License does not grant any rights to use the trademarks, service marks, trade names, logos, or other branding elements of the Licensor, Developer, Company, or Foundation. Any use of such marks requires separate written permission from the appropriate rights holder.
+
+**6.2. Attribution Requirement.** While trademark rights are not granted, Licensee must provide appropriate attribution as specified in Section 11 when distributing the Licensed Software or derivative works.
+
+## 7. Patent Rights
+
+**7.1. Patent License for Non-Commercial Use.** To the extent the Licensor holds or controls patent rights that are necessarily infringed by the Licensed Software, the Licensor grants to You a non-exclusive, worldwide, royalty-free patent license to make, use, offer to sell, and import the Licensed Software solely for Non-Commercial Use as defined in Section 1.3.
+
+**7.2. Patent Rights for Commercial Use.** The patent license granted in Section 7.1 does not extend to Commercial Use. Any Commercial Use that would implicate patent rights requires express patent licensing as part of the Commercial License obtained pursuant to Sections 4 and 5.
+
+**7.3. Patent Termination.** If You institute patent litigation against the Licensor, Developer, Company, or Foundation alleging that the Licensed Software infringes a patent, then all patent licenses granted to You under this License shall terminate immediately as of the date such litigation is filed.
+
+## 8. Warranty Disclaimer and Limitation of Liability
+
+**8.1. No Warranty.** THE LICENSED SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, LICENSOR, DEVELOPER, COMPANY, FOUNDATION, AND ALL CONTRIBUTORS EXPRESSLY DISCLAIM ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING WITHOUT LIMITATION ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, QUIET ENJOYMENT, OR ARISING FROM COURSE OF DEALING OR USAGE OF TRADE.
+
+**8.2. Limitation of Liability.** IN NO EVENT SHALL LICENSOR, DEVELOPER, COMPANY, FOUNDATION, OR ANY CONTRIBUTOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, EXEMPLARY, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO THIS LICENSE OR THE LICENSED SOFTWARE, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, LOSS OF DATA, BUSINESS INTERRUPTION, OR COST OF SUBSTITUTE GOODS OR SERVICES, REGARDLESS OF THE THEORY OF LIABILITY (CONTRACT, TORT, STRICT LIABILITY, OR OTHERWISE) AND EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+**8.3. Maximum Liability.** TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE TOTAL AGGREGATE LIABILITY OF LICENSOR, DEVELOPER, COMPANY, FOUNDATION, AND ALL CONTRIBUTORS ARISING OUT OF OR RELATED TO THIS LICENSE SHALL NOT EXCEED THE AMOUNT OF ROYALTY PAYMENTS, IF ANY, PAID BY YOU TO LICENSOR IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY. FOR CONTRIBUTORS, THEIR MAXIMUM LIABILITY SHALL NOT EXCEED THE TOTAL AMOUNT OF CONTRIBUTOR POOL DISTRIBUTIONS THEY HAVE RECEIVED.
+
+**8.4. Acknowledgment.** You acknowledge that the disclaimers and limitations in this Section 8 are essential elements of this License and that Licensor would not make the Licensed Software available under this License without these limitations.
+
+## 9. Term and Termination
+
+**9.1. Automatic Termination for Breach.** This License and all rights granted hereunder will terminate automatically if You fail to comply with any term or condition of this License. Upon becoming aware of any breach, Licensor may provide You with written notice specifying the breach. If You fail to cure such breach within thirty (30) days of receiving written notice (or ten (10) days for payment breaches), this License shall terminate immediately.
+
+**9.2. Termination for Convenience by Licensee.** You may terminate this License at any time by ceasing all use of the Licensed Software and destroying or deleting all copies in Your possession or control. Notice of such termination should be provided to Licensor if You were engaged in Commercial Use.
+
+**9.3. Effect of Termination.** Upon termination of this License for any reason:
+
+- You must immediately cease all Commercial Use of the Licensed Software;
+- You must destroy or return to Licensor (at Licensor's option) all copies of the Licensed Software used for Commercial Use and any derivative works created for Commercial Use;
+- All payment obligations that accrued prior to termination shall survive and remain due and payable, including any outstanding Contributor Pool distributions;
+- You may continue to use copies of the Licensed Software for Non-Commercial Use that were lawfully obtained prior to termination, subject to continued compliance with all terms of this License applicable to Non-Commercial Use.
+
+**9.4. Contributor Rights Upon Termination.** Termination of this License does not affect Contributors' vested rights to receive Contributor Pool distributions for periods during which the License was in effect and for which royalties have been received.
+
+**9.5. Survival.** The following sections shall survive termination of this License: Section 4 (Commercial Licensing and Royalties, for accrued obligations), Section 6 (Trademarks and Branding), Section 7 (Patent Rights), Section 8 (Warranty Disclaimer and Limitation of Liability), Section 9.3 and 9.4 (Effect of Termination and Contributor Rights), Section 10 (Governing Law and Dispute Resolution), and Section 13 (General Provisions).
+
+## 10. Governing Law and Dispute Resolution
+
+**10.1. Governing Law.** This License shall be governed by and construed in accordance with the substantive laws of the Republic of South Africa, without regard to its conflicts of law principles.
+
+**10.2. Jurisdiction.** Any dispute, claim, or controversy arising out of or relating to this License or the breach, termination, enforcement, interpretation, or validity thereof shall be subject to the exclusive jurisdiction of the courts of the Republic of South Africa, and the parties consent to the personal jurisdiction of such courts, unless the parties agree otherwise in writing.
+
+**10.3. Dispute Resolution Process.** Prior to initiating formal litigation, the parties agree to attempt to resolve any dispute through good faith negotiation for a period of thirty (30) days. Either party may initiate this process by providing written notice to the other party describing the dispute.
+
+**10.4. Contributor Disputes.** Disputes between Contributors and the Licensor regarding Contribution Value calculations, pool distributions, or other matters arising under this License shall first be subject to mediation administered by a mutually agreed neutral third party before any legal action may be commenced.
+
+**10.5. Commercial License Disputes.** Disputes specifically relating to interpretation or performance of a Commercial License may include alternative dispute resolution provisions as agreed in the Commercial License itself.
+
+## 11. Attribution and Notice Requirements
+
+**11.1. Required Attribution.** Any distribution of the Licensed Software, whether in source code or binary form, whether modified or unmodified, must include all of the following:
+
+- The complete copyright notice set forth at the beginning of this License;
+- A complete copy of this License document;
+- A NOTICE file (if one exists in the original distribution) that lists attribution information for the Developer, Company, Foundation, and major Contributors.
+
+**11.2. NOTICE File Contents.** If You distribute the Licensed Software or derivative works, You must include a NOTICE file containing at minimum the following attribution language:
+
+```BASH
+This software includes code licensed under the Voice & Eye Source-Available NonCommercial + Commercial-License (VEO-SA-NC-1.0).
+
+Copyright (c) 2025 Siyabonga Blessing Phakathi and The Voice and Eye of Bhambatha Incorporated.
+
+Developer: Siyabonga Blessing Phakathi
+Company: The Voice and Eye of Bhambatha Incorporated
+Foundation: UFasimba DiGiTal FrienDs (Supporting digital transformation across Africa)
+
+This software includes contributions from community contributors who participate in the Contributor Pool.
+
+For commercial licensing inquiries: datoxic0@gmail.com or siyabphakathi@outlook.com
+```
+
+**11.3. Modifications to Attribution.** You may not remove, modify, or obscure any copyright notices, attribution information, or license text contained in the Licensed Software.
+
+## 12. Modifications to the License
+
+**12.1. License Versioning.** The Licensor may publish revised or new versions of this License from time to time. Each version will be given a distinguishing version number. The Licensed Software may specify that it is licensed under a particular version of this License "or any later version," in which case You may choose to follow the terms of that version or any later version published by Licensor.
+
+**12.2. Application to Releases.** Unless otherwise specified, each release of the Licensed Software is governed by the version of this License included with that release. If a new version of the Licensed Software is released under a different version of this License, existing copies previously obtained remain governed by the License version under which they were originally distributed, unless You obtain a new copy under the new License version.
+
+**12.3. No Retroactive Changes.** New versions of this License shall not retroactively affect the terms under which You received previous versions of the Licensed Software unless You affirmatively accept the new License version by obtaining a new copy of the software or by written agreement.
+
+**12.4. Contributor Rights Preservation.** Any modifications to this License that affect Contributor Pool calculations, distributions, or eligibility shall not retroactively reduce vested Contributor rights for royalties already earned during periods when previous License versions were in effect.
+
+## 13. General Provisions
+
+**13.1. Entire Agreement.** This License constitutes the entire agreement between the parties concerning the Licensed Software for Non-Commercial Use and supersedes all prior or contemporaneous oral or written agreements concerning such subject matter. Commercial License agreements executed pursuant to Sections 4 and 5 shall constitute separate agreements that supplement this License for purposes of Commercial Use.
+
+**13.2. Severability.** If any provision of this License is held to be unenforceable or invalid by a court of competent jurisdiction, such provision shall be modified to the minimum extent necessary to make it enforceable and valid, or if such modification is not possible, such provision shall be severed from this License. The remaining provisions of this License shall remain in full force and effect.
+
+**13.3. No Waiver.** The failure of Licensor to exercise or enforce any right or provision of this License shall not constitute a waiver of such right or provision. Any waiver of any provision of this License must be in writing and signed by the Licensor to be effective.
+
+**13.4. Assignment.** You may not assign or transfer this License or any rights granted hereunder without the prior written consent of Licensor, and any attempted assignment in violation of this provision shall be void. Licensor may assign this License and its rights and obligations hereunder without restriction. This License shall be binding upon and inure to the benefit of the parties and their respective permitted successors and assigns. Contributors may not assign their rights to Contributor Pool distributions except in the case of death or legal incapacity, in which case such rights pass to the Contributor's estate or legal representative.
+
+**13.5. Export Compliance.** You agree to comply with all applicable export and import laws and regulations in connection with Your use of the Licensed Software. You represent and warrant that You are not located in, under the control of, or a national or resident of any country to which the export of the Licensed Software would be prohibited by applicable law.
+
+**13.6. Relationship of Parties.** Nothing in this License shall be construed to create a partnership, joint venture, agency, or employment relationship between You and Licensor, Developer, Company, Foundation, or any Contributor. Contributors are independent contractors and not employees or agents of the Licensor.
+
+**13.7. Tax Responsibilities.** Each party (including each Contributor) is solely responsible for determining and fulfilling their own tax obligations with respect to any payments received under this License. The Licensor may be required to report payments to Contributors to tax authorities depending on jurisdiction and amount. Contributors shall provide any tax documentation reasonably requested by the Licensor to comply with applicable tax reporting requirements.
+
+**13.8. Notice Requirements.** All notices required or permitted under this License shall be in writing and shall be deemed given when delivered personally, sent by confirmed facsimile or email, or three (3) days after being sent by internationally recognized courier service to the addresses specified in this License or as subsequently updated by written notice.
+
+**13.9. Interpretation.** Headings used in this License are for convenience only and shall not affect the interpretation of any provision. The words "include," "includes," and "including" shall be deemed to be followed by the phrase "without limitation." The singular shall include the plural and vice versa. "Or" is not exclusive.
+
+**13.10. Force Majeure.** Neither party shall be liable for failure or delay in performance under this License (except for payment obligations) to the extent such failure or delay is caused by circumstances beyond that party's reasonable control, including acts of God, natural disasters, war, terrorism, riots, embargoes, acts of civil or military authorities, fire, floods, accidents, pandemics, or strikes.
+
+## 14. Contact Information
+
+**For all inquiries regarding this License, including Commercial License requests, royalty payments, Contributor Pool inquiries, audit notifications, legal notices, and general questions:**
+
+**Primary Contacts:**
+
+- Siyabonga Blessing Phakathi
+- Email: <datoxic0@gmail.com>
+- Email (alternate): <siyabphakathi@outlook.com>
+
+**Entities:**
+
+- Company: The Voice and Eye of Bhambatha Incorporated
+- Foundation: UFasimba DiGiTal FrienDs
+
+**Contributor Portal:** [INSERT URL WHEN AVAILABLE]
+
+---
+
+### **END OF LICENSE (VEO-SA-NC-1.0)**
