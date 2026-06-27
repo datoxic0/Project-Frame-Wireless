@@ -1,0 +1,46 @@
+# Project Frame Wireless - Implementation Plan v2
+
+## Goal Description
+
+Build an advanced, highly professional hybrid desktop application called **Project Frame Wireless**. This application acts as a local network hub, allowing you to host a local server, launch applications, and manage files remotely.
+
+Based on your feedback, we are elevating this project to a highly advanced architecture that leverages the strengths of **both Node.js and Python** working in tandem.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Hybrid Architecture (Node.js + Python)**
+> To maximize system capabilities and ensure flawless offline operation, we will use a hybrid approach:
+> 1. **Frontend & Orchestration (Node.js/Electron)**: Handles the premium desktop UI (glassmorphism, dark mode), window management, and fast user interactions.
+> 2. **Backend Engine (Python)**: Node.js will seamlessly spawn and manage a Python backend. Python will be responsible for hosting the robust HTTP server (serving files to mobile) and performing complex system logic like deep folder scanning. This gives you the unmatched offline reliability of Python combined with the modern UI capabilities of Electron.
+
+## Proposed Changes
+
+We will restructure the project to accommodate both languages communicating with each other.
+
+### 1. Python Backend Engine (`backend/`)
+We will create a Python server (using standard libraries or a lightweight framework like Flask/FastAPI) that runs silently in the background.
+- **[NEW] `backend/server.py`**: The Python script that starts the HTTP server. It will handle network requests from your phone.
+- **[NEW] `backend/scanner.py`**: A Python module dedicated to automatically scanning specified directories for `.exe`, `.bat`, and `.lnk` files to populate the App Launcher automatically.
+
+### 2. Node.js Orchestration (Electron Main Process)
+- **[MODIFY] `main.js`**: We will update the Electron main process to spawn the Python `server.py` when you click "Start Server". Node.js and Python will communicate locally (via stdout/stdin or local HTTP API). Node.js will also handle the manual application launching (since it's very fast at spawning processes).
+
+### 3. App Launcher (Manual + Auto)
+- **[MODIFY] Desktop UI**: We will add a "Scan for Apps" feature. You will be able to point the app to a folder (e.g., `C:\Games`), and the Python backend will deeply scan it for executables and send the list back to the Node.js UI.
+- **[MODIFY] Desktop UI**: The manual "Add App" modal will remain, giving you both options for ultimate flexibility and perfection.
+
+### 4. Optimized Mobile Interface
+- **[MODIFY] `public/mobile/`**: The mobile web app will remain visually clean and modern but will be optimized to be highly performant. We will implement lazy-loading for large directories and ensure the JavaScript logic is minimal, ensuring it eats very little CPU and RAM on your mobile devices, while still offering complex features like file searching and remote execution.
+
+## Verification Plan
+
+### Automated/System Tests
+- Verify that Node.js successfully spawns the Python process without errors.
+- Ensure the Python server gracefully shuts down when the Electron app is closed (preventing zombie processes).
+
+### Manual Verification
+1. Start the app.
+2. Trigger the "Scan Folder" feature and verify Python successfully finds executables and reports them to the UI.
+3. Start the Python-powered network server from the Node.js UI.
+4. Access the mobile interface and verify it is snappy, lightweight, and correctly serves files using the Python backend.

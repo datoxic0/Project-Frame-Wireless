@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Frame Wireless</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/style.css"/>
+</head>
+<body>
+  <div class="drag-region"></div>
+
+  <div class="app-shell">
+    <!-- ── HEADER ── -->
+    <header class="app-header">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+            <path d="M12 12v9"/><path d="m8 17 4 4 4-4"/>
+          </svg>
+        </div>
+        <h1>Frame <span>Wireless</span></h1>
+      </div>
+      <div class="status-pill" id="status-pill">
+        <div class="status-dot"></div>
+        <span class="status-text">Server Offline</span>
+      </div>
+    </header>
+
+    <!-- ── MAIN ── -->
+    <main class="main-grid">
+
+      <!-- LEFT: Network Hub -->
+      <section class="glass-panel hub-panel">
+        <div class="panel-hdr">
+          <div>
+            <h2>Network Hub</h2>
+            <p>Share files, stream, and launch across your Wi-Fi.</p>
+          </div>
+        </div>
+
+        <div class="ctrl-stack">
+          <div class="ctrl-group">
+            <label>Shared Folder Shortcut</label>
+            <div class="row-input">
+              <input type="text" id="shared-folder-path" readonly placeholder="Select a default shared folder…"/>
+              <button id="btn-select-folder" class="btn btn-secondary">Browse</button>
+            </div>
+          </div>
+          <div class="ctrl-group">
+            <label>Server Port</label>
+            <input type="number" id="server-port" value="5500"/>
+          </div>
+          <button id="btn-toggle-server" class="btn btn-primary pulse-btn">Start Server</button>
+        </div>
+
+        <div id="server-info" class="server-info hidden">
+          <div class="connect-card">
+            <div class="connect-icon">🔗</div>
+            <div>
+              <p class="connect-label">Open on your device:</p>
+              <a id="server-url" href="#" target="_blank">http://—</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── BROADCAST ── -->
+        <div class="broadcast-section" id="broadcast-section">
+          <div class="divider-label">📡 Live Broadcast</div>
+          <p class="sub-text">Stream your PC screen &amp; audio to every device on the network simultaneously.</p>
+
+          <div id="ffmpeg-warning" class="warning-box hidden">
+            ⚠️ ffmpeg not found. <a href="https://ffmpeg.org/download.html" target="_blank">Download here</a> and add to PATH.
+          </div>
+
+          <div class="ctrl-group">
+            <label>Quality</label>
+            <div class="type-selector" id="bc-quality-sel">
+              <button class="type-btn" data-q="low">Low <small>480p</small></button>
+              <button class="type-btn active" data-q="medium">Medium <small>720p</small></button>
+              <button class="type-btn" data-q="high">High <small>1080p</small></button>
+            </div>
+          </div>
+
+          <button id="btn-broadcast" class="btn btn-primary" style="width:100%" disabled>
+            Check ffmpeg…
+          </button>
+
+          <div id="broadcast-url-box" class="connect-card hidden" style="margin-top:12px">
+            <div class="connect-icon">📺</div>
+            <div>
+              <p class="connect-label">Watch URL (open in any browser on the network):</p>
+              <a id="broadcast-url" href="#" target="_blank" id="broadcast-url">—</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Quick Launch -->
+      <section class="glass-panel apps-panel">
+        <div class="panel-hdr">
+          <h2>Quick Launch</h2>
+          <div style="display:flex;gap:8px">
+            <button id="btn-scan-apps" class="btn btn-secondary btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg> Scan
+            </button>
+            <button id="btn-add-app" class="btn btn-icon" title="Add app">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <p class="drag-hint">Drag .exe / .bat / .lnk files here to add instantly</p>
+
+        <div class="apps-grid" id="apps-grid">
+          <div id="drop-zone" class="drop-zone hidden"><p>⬇ Drop here</p></div>
+          <div class="empty-state" id="empty-state">
+            <p>No apps yet.</p>
+            <button id="btn-add-app-empty" class="btn btn-text">Add one</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL: Add App -->
+  <div id="modal-add" class="modal-overlay hidden">
+    <div class="modal glass-panel">
+      <h2>Add to Quick Launch</h2>
+      <div class="ctrl-group">
+        <label>Name</label>
+        <input type="text" id="app-name-input" placeholder="My Game / My App"/>
+      </div>
+      <div class="ctrl-group">
+        <label>Type</label>
+        <div class="type-selector" id="type-selector">
+          <button class="type-btn active" data-type="executable">🎮 Executable</button>
+          <button class="type-btn" data-type="static">📁 Static Web</button>
+          <button class="type-btn" data-type="webapp">⚡ npm Project</button>
+        </div>
+      </div>
+      <div class="ctrl-group">
+        <label id="path-label">File Path</label>
+        <div class="row-input">
+          <input type="text" id="app-path-input" placeholder="Select path…"/>
+          <button id="btn-browse-app" class="btn btn-secondary">Browse</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-cancel-app" class="btn btn-secondary">Cancel</button>
+        <button id="btn-save-app" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Launch Mode -->
+  <div id="modal-mode" class="modal-overlay hidden">
+    <div class="modal glass-panel">
+      <h2 id="mode-title">Select Launch Mode</h2>
+      <p style="color:var(--muted);font-size:.88rem;margin-bottom:20px">How to serve this project?</p>
+      <div class="type-selector" style="flex-direction:column;gap:9px">
+        <button class="type-btn mode-btn" data-mode="dev">⚡ Dev Mode <small>npm run dev</small></button>
+        <button class="type-btn mode-btn" data-mode="preview">👁 Preview <small>npm run preview</small></button>
+        <button class="type-btn mode-btn" data-mode="build_preview">🏗 Build + Preview <small>npm run build → preview</small></button>
+        <button class="type-btn mode-btn" data-mode="start">▶ Start <small>npm start</small></button>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-cancel-mode" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./src/renderer.js"></script>
+</body>
+</html>

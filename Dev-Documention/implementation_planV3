@@ -1,0 +1,46 @@
+# Project Frame Wireless - Advanced Implementation Plan
+
+Thank you for the detailed feedback. This plan outlines how we will completely revamp the application to achieve perfection, implementing powerful file management, seamless mobile navigation, and intuitive desktop interactions.
+
+## Goal Description
+Transform Project Frame Wireless from a basic network hub into a full-fledged, high-performance remote file manager and app launcher, seamlessly blending the strengths of Node.js (UI/Drag-and-Drop) and Python (Advanced File Handling/Networking).
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Large File Uploads (12GB Limit)**
+> To achieve fast, reliable file transfers up to 12GB without crashing the Python server or eating up RAM, we will **stream** the files directly from the mobile browser to the Python backend chunk-by-chunk. We will use a direct binary upload approach rather than complex multi-part forms to ensure maximum performance.
+
+> [!WARNING]
+> **Full PC Access & Security**
+> Exposing "This PC" (all drives) is powerful but risky. The Python backend will be updated to:
+> 1. Dynamically list all available drives (`C:\`, `D:\`, etc.).
+> 2. Strictly filter out system files, hidden files, and protected directories to prevent accidental damage or viewing of sensitive OS data. 
+> 3. Enforce **Read-Only** access for browsing, with modifications limited *only* to the dedicated Upload functionality.
+
+## Proposed Changes
+
+### 1. Advanced Python Backend (`backend/server.py`)
+- **[MODIFY] Global Access Mode**: Instead of locking into one shared folder, the server will now support navigating from a root "This PC" view showing all drives.
+- **[MODIFY] Hidden File Filter**: Use Windows-specific attribute checking (`ctypes`) to accurately hide system and hidden files.
+- **[MODIFY] Upload API Endpoint (`/api/upload`)**: Implement a new `POST` endpoint that accepts raw binary streams and saves them to the currently viewed directory on the PC, supporting massive file sizes chunk-by-chunk.
+- **[MODIFY] App List Sync**: The server will load the saved Quick Launch apps (stored by Electron) so they can be sent to the mobile device.
+
+### 2. Enhanced Mobile UI (`public/mobile/`)
+- **[MODIFY] Navigation (Fix Back Button)**: Implement the HTML5 History API (`history.pushState`). This will make your phone's native back button correctly navigate up a folder instead of exiting the browser!
+- **[MODIFY] 3-Button Item Layout**: Redesign the file list. Each item will have:
+    1. **View/Open** (Primary click)
+    2. **Pull** (Download icon on the right)
+    3. **Info/Select** (Properties icon on the right)
+- **[MODIFY] Floating Upload Button**: A clean, modern floating action button to select files from your phone and send them to the current PC directory.
+- **[MODIFY] Remote Launcher Section**: A new tab/section in the mobile UI displaying your PC's Quick Launch apps, allowing you to trigger them with a tap.
+
+### 3. Intuitive Desktop UI (`index.html` & `src/renderer.js`)
+- **[MODIFY] Drag & Drop**: Completely overhaul the Quick Launch panel. You will be able to literally drag `.exe` or `.bat` files from your Windows Desktop straight into the app's grid to add them instantly.
+- **[MODIFY] Quick Launch Sync**: Ensure the saved apps are written to a shared configuration file (e.g., `apps.json`) that the Python server can read and serve to the mobile device.
+
+## Verification Plan
+1. **Drag and Drop**: Drag a `.bat` file into the Electron window and verify it is added.
+2. **Mobile Navigation**: Browse deep into a folder on the phone, press the physical back button, and verify it goes up one directory.
+3. **File Transfer**: Use the upload button on the phone to send a large file to the PC.
+4. **App Launching**: Tap an app in the mobile UI and verify it launches on the PC.

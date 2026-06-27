@@ -1,0 +1,27 @@
+# Project Frame Wireless - Walkthrough
+
+I have successfully evolved **Project Frame Wireless** into the ultimate, uncompromised solution you envisioned. We are now running a **Hybrid Architecture** combining the best of Node.js and Python.
+
+## Advanced Features Implemented
+
+### 1. Hybrid Engine (Node.js + Python)
+- **Node.js (Electron)** continues to power the ultra-fast, premium desktop UI with glassmorphism and modern aesthetics.
+- **Python** is now running silently in the background, serving as your robust network engine. When you start the server, Node.js securely spawns a lightweight Python server. This guarantees flawless offline operation and maximizes your system's capabilities.
+
+### 2. Intelligent App Launcher (Auto & Manual)
+- **Scan For Apps**: I've added a powerful new "Scan" button in the Quick Launch panel. Click it, select a folder (like `C:\Games`), and the Python backend will deeply scan the directory and its subdirectories to find `.exe`, `.bat`, and `.lnk` files, adding them to your UI automatically!
+- **Manual Add**: You still retain the precision of adding apps manually for ultimate control.
+
+### 3. Hyper-Optimized Mobile Interface
+- The mobile interface has been streamlined. It is incredibly lightweight, built purely with HTML/CSS and minimal Vanilla JS.
+- It will consume virtually zero RAM or CPU on your mobile devices, while still connecting securely to the powerful Python backend on your PC to browse files and execute commands.
+
+## How to Run It
+
+1. Open your terminal in `C:\Users\Asikhule Safetify\Documents\ProjectFrameWireless`.
+2. Run `npm run start` to launch the desktop application.
+3. In the app:
+   - Click **Browse** and select a folder to share.
+   - Click **Start Server** to spin up the Python backend.
+   - In the **Quick Launch** section, click **Scan** to automatically find your games/apps, or use the manual add button.
+4. Access the mobile interface using the provided IP address in your phone's browser!

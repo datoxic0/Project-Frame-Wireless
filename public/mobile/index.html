@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0f172a">
+  <title>Frame Wireless</title>
+  <!-- NO external font CDN — system fonts only for reliability -->
+  <style>
+    /* ── Reset ── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0f172a;--glass:rgba(30,41,59,.9);--border:rgba(255,255,255,.09);
+      --pri:#8b5cf6;--pri-dim:rgba(139,92,246,.14);--pri-h:#7c3aed;
+      --text:#f1f5f9;--muted:#64748b;--success:#10b981;--danger:#ef4444;
+    }
+    html,body{height:100%;background:linear-gradient(140deg,#0f172a 0%,#1e1b4b 100%);color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;
+      font-size:15px;overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+
+    /* ── Header ── */
+    .hdr{position:sticky;top:0;z-index:200;display:flex;align-items:center;
+      justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 14px;
+      background:rgba(15,23,42,.95);backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border)}
+    .logo{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:500}
+    .logo b{font-weight:700}
+    .logo-icon{background:linear-gradient(135deg,var(--pri),#ec4899);padding:5px;
+      border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+    /* ── Tabs ── */
+    .tabs{display:flex;gap:5px;flex-wrap:wrap}
+    .tab{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);
+      padding:5px 10px;border-radius:16px;font-family:inherit;font-size:.73rem;font-weight:500;
+      cursor:pointer;transition:all .18s;white-space:nowrap}
+    .tab.active{background:var(--pri);border-color:var(--pri);color:#fff}
+
+    /* ── Quick Bar ── */
+    .quick-bar{display:flex;gap:8px;padding:7px 12px;border-bottom:1px solid var(--border);
+      overflow-x:auto;scrollbar-width:none}
+    .quick-bar::-webkit-scrollbar{display:none}
+    .quick-bar.hidden{display:none}
+    .qa{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);
+      padding:4px 12px;border-radius:14px;font-family:inherit;font-size:.76rem;font-weight:500;
+      cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .18s}
+    .qa.active{background:var(--pri-dim);border-color:var(--pri);color:var(--text)}
+
+    /* ── Breadcrumb ── */
+    .bc{display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;gap:3px;
+      padding:6px 12px;font-size:.73rem;white-space:nowrap;border-bottom:1px solid var(--border);
+      scrollbar-width:none}
+    .bc::-webkit-scrollbar{display:none}
+    .bc.hidden,.hidden{display:none!important}
+    .crumb{color:var(--pri);cursor:pointer;padding:2px 3px;border-radius:4px}
+    .crumb.cur{color:var(--text);cursor:default}
+    .sep{color:var(--muted)}
+
+    /* ── Upload progress ── */
+    .prog-wrap{padding:5px 12px;background:rgba(0,0,0,.25)}
+    .prog-label{font-size:.73rem;color:var(--muted);margin-bottom:4px}
+    .prog-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+    .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--pri),#ec4899);transition:width .2s}
+
+    /* ── Tab bodies ── */
+    .tab-body{display:none;padding-bottom:90px}
+    .tab-body.active{display:block}
+
+    /* ── File list ── */
+    .list{padding:8px 10px;display:flex;flex-direction:column;gap:5px}
+
+    /* ── Row ── */
+    .row{display:flex;align-items:center;gap:10px;background:var(--glass);
+      border:1px solid var(--border);border-radius:11px;padding:9px 11px;
+      cursor:pointer;transition:background .14s}
+    .row:active{background:rgba(255,255,255,.1)}
+    .row.shortcut{border-color:rgba(139,92,246,.3)}
+    .row.drive{border-color:rgba(255,255,255,.13)}
+    .row-icon{font-size:1.3rem;width:36px;height:36px;display:flex;align-items:center;
+      justify-content:center;border-radius:9px;background:rgba(255,255,255,.04);flex-shrink:0}
+    .row.dir .row-icon{background:var(--pri-dim)}
+    .app-icon-bg{background:linear-gradient(135deg,#3b82f6,#2dd4bf)!important}
+    .row-info{flex:1;overflow:hidden;min-width:0}
+    .row-name{font-size:.85rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .row-sub{font-size:.7rem;color:var(--muted);margin-top:1px}
+
+    /* ── 3 Action Buttons ── */
+    .acts{display:flex;gap:3px;flex-shrink:0}
+    .abt{width:28px;height:28px;border-radius:6px;background:rgba(255,255,255,.05);
+      border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;
+      justify-content:center;cursor:pointer;font-size:.82rem;transition:all .14s}
+    .abt:active{background:var(--pri-dim);border-color:var(--pri)}
+    .abt.launch{width:32px;height:32px;border-color:var(--pri);background:var(--pri-dim);color:var(--pri)}
+
+    /* ── Empty / loader ── */
+    .empty{text-align:center;padding:48px 20px;color:var(--muted);font-size:.88rem;line-height:1.7}
+    .loader{width:30px;height:30px;border-radius:50%;border:3px solid var(--border);
+      border-top-color:var(--pri);animation:spin .75s linear infinite;margin:36px auto}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── FAB ── */
+    .fab{position:fixed;bottom:20px;right:14px;z-index:400;width:50px;height:50px;
+      border-radius:50%;background:linear-gradient(135deg,var(--pri),#ec4899);
+      border:none;color:#fff;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 20px rgba(139,92,246,.45);cursor:pointer;transition:transform .18s}
+    .fab:active{transform:scale(.9)}
+
+    /* ── Inline media player ── */
+    .player{position:fixed;inset:0;z-index:500;background:#000;
+      display:flex;flex-direction:column}
+    .player-hdr{display:flex;align-items:center;justify-content:space-between;
+      padding:9px 14px;background:rgba(0,0,0,.7);gap:10px}
+    .player-title{font-size:.82rem;font-weight:500;overflow:hidden;text-overflow:ellipsis;
+      white-space:nowrap;flex:1}
+    .player-close{background:rgba(255,255,255,.1);border:none;color:#fff;
+      width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.9rem;flex-shrink:0}
+    #pv{width:100%;flex:1;object-fit:contain;background:#000}
+    #pa{width:calc(100% - 24px);margin:auto 12px}
+    #pi{width:100%;flex:1;object-fit:contain}
+
+    /* ── Screen share ── */
+    .screen-wrap{padding:14px;display:flex;flex-direction:column;gap:12px}
+    .screen-hint{text-align:center;color:var(--muted);font-size:.8rem}
+    .screen-img{width:100%;border-radius:9px;border:1px solid var(--border)}
+    .screen-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:12px;min-height:180px;background:var(--glass);border:1px solid var(--border);
+      border-radius:12px;padding:24px}
+    .start-btn{background:var(--pri);color:#fff;border:none;padding:11px 22px;
+      border-radius:9px;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+    .start-btn:active{opacity:.8}
+
+    /* ── Live TV (HLS) ── */
+    .tv-wrap{padding:14px;display:flex;flex-direction:column;gap:12px}
+    .tv-player{width:100%;border-radius:9px;border:1px solid var(--border);background:#000}
+    .tv-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:10px;min-height:200px;background:var(--glass);border:1px solid var(--border);
+      border-radius:12px;padding:20px;text-align:center}
+    .tv-ph p{color:var(--muted);font-size:.85rem;line-height:1.6}
+    .tv-url-input{width:100%;background:rgba(15,23,42,.7);border:1px solid var(--border);
+      color:var(--text);padding:10px 12px;border-radius:8px;font-family:inherit;font-size:.85rem}
+    .tv-url-input:focus{outline:none;border-color:var(--pri)}
+
+    /* ── Properties sheet ── */
+    .overlay{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.55);
+      backdrop-filter:blur(4px);display:flex;align-items:flex-end;animation:fi .2s}
+    @keyframes fi{from{opacity:0}to{opacity:1}}
+    .sheet{width:100%;background:#1e293b;border-radius:20px 20px 0 0;
+      padding:16px;animation:su .22s cubic-bezier(.16,1,.3,1)}
+    @keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .s-handle{width:36px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 14px}
+    .s-title{font-size:.9rem;font-weight:600;margin-bottom:12px}
+    .s-body{font-size:.79rem;color:var(--muted);line-height:2}
+    .s-close{display:block;width:100%;margin-top:16px;background:rgba(255,255,255,.05);
+      border:1px solid var(--border);color:var(--text);padding:11px;border-radius:9px;
+      font-family:inherit;font-size:.88rem;cursor:pointer}
+    .s-close:active{background:var(--pri-dim)}
+
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+        <path d="M12 12v9"/><path d="m8 17 4 4 4-4"/>
+      </svg>
+    </div>
+    <span>Frame <b>Wireless</b></span>
+  </div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="files">📁 Files</button>
+    <button class="tab" data-tab="launcher">🚀 Launcher</button>
+    <button class="tab" data-tab="screen">🖥 Screen</button>
+    <button class="tab" data-tab="tv">📺 Live TV</button>
+  </nav>
+</header>
+
+<!-- QUICK ACCESS -->
+<div class="quick-bar" id="qbar">
+  <button class="qa active" id="qa-home"   onclick="nav('')">💻 This PC</button>
+  <button class="qa"        id="qa-shared" onclick="nav('SHARED_FOLDER')">📁 Shared</button>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="bc" id="bc"></div>
+
+<!-- UPLOAD PROGRESS -->
+<div class="prog-wrap hidden" id="prog-wrap">
+  <div class="prog-label" id="prog-label">Uploading…</div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+</div>
+
+<!-- TAB: FILES -->
+<section class="tab-body active" id="tab-files">
+  <div class="loader hidden" id="loader"></div>
+  <div class="list" id="file-list"></div>
+</section>
+
+<!-- TAB: LAUNCHER -->
+<section class="tab-body" id="tab-launcher">
+  <div class="list" id="launcher-list"></div>
+  <div class="empty hidden" id="launcher-empty">No apps configured on the PC yet.</div>
+</section>
+
+<!-- TAB: SCREEN -->
+<section class="tab-body" id="tab-screen">
+  <div class="screen-wrap">
+    <p class="screen-hint">Live view of your PC screen (~10 fps, read-only)</p>
+    <img id="screen-img" class="screen-img hidden" alt="PC Screen">
+    <div class="screen-ph" id="screen-ph">
+      <button class="start-btn" id="btn-screen">▶ Start Screen View</button>
+      <p style="color:var(--muted);font-size:.75rem">Requires Pillow on the PC: pip install Pillow</p>
+    </div>
+  </div>
+</section>
+
+<!-- TAB: LIVE TV -->
+<section class="tab-body" id="tab-tv">
+  <div class="tv-wrap">
+    <p class="screen-hint">Watch a live broadcast from the PC. Start the broadcast from the desktop app first.</p>
+    <video id="tv-player" class="tv-player" controls playsinline style="display:none"></video>
+    <div class="tv-ph" id="tv-ph">
+      <p>Paste the broadcast URL from the desktop app, or start one and it will appear here automatically.</p>
+      <input class="tv-url-input" id="tv-url-input" type="url" placeholder="http://192.168.x.x:5500/broadcast/stream.m3u8">
+      <button class="start-btn" id="btn-tv-watch">📺 Watch Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAB -->
+<button class="fab" id="fab" title="Send file to PC">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+  </svg>
+</button>
+<input type="file" id="file-input" multiple style="display:none">
+
+<!-- INLINE MEDIA PLAYER -->
+<div class="player hidden" id="player">
+  <div class="player-hdr">
+    <span class="player-title" id="player-title"></span>
+    <button class="player-close" id="player-close">✕</button>
+  </div>
+  <video id="pv" controls playsinline class="hidden" preload="metadata"></video>
+  <audio id="pa" controls class="hidden"></audio>
+  <img   id="pi" class="hidden" alt="">
+</div>
+
+<!-- PROPERTIES SHEET -->
+<div class="overlay hidden" id="props-ov">
+  <div class="sheet">
+    <div class="s-handle"></div>
+    <div class="s-title">Properties</div>
+    <div class="s-body" id="props-body"></div>
+    <button class="s-close" onclick="closeOverlay('props-ov')">Close</button>
+  </div>
+</div>
+
+<!-- hls.js for Live TV (CDN — needed for Android Chrome) -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
+
+<script>
+'use strict';
+// ─────────────────────────────────────────────────────────────────────────────
+//  State
+// ─────────────────────────────────────────────────────────────────────────────
+const SESSION_LIMIT = 12 * 1024 * 1024 * 1024;
+let sessionUploaded = 0;
+let currentPath     = '';
+let activeTab       = 'files';
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Utils
+// ─────────────────────────────────────────────────────────────────────────────
+function get(id)         { return document.getElementById(id); }
+function closeOverlay(id){ get(id).classList.add('hidden'); }
+
+function fmtSize(b) {
+  if (!b && b !== 0) return '';
+  if (b < 1024)      return b + ' B';
+  if (b < 1024**2)   return (b/1024).toFixed(1) + ' KB';
+  if (b < 1024**3)   return (b/1024**2).toFixed(1) + ' MB';
+  return               (b/1024**3).toFixed(2) + ' GB';
+}
+
+function fileIcon(f) {
+  if (f.isDrive)     return '💿';
+  if (f.isShortcut)  return '📁';
+  if (f.isDirectory) return '🗂';
+  const e = (f.name||'').split('.').pop().toLowerCase();
+  return ({
+    jpg:'🖼',jpeg:'🖼',png:'🖼',gif:'🖼',webp:'🖼',bmp:'🖼',svg:'🖼',
+    mp4:'🎬',mkv:'🎬',avi:'🎬',mov:'🎬',wmv:'🎬',
+    mp3:'🎵',wav:'🎵',flac:'🎵',ogg:'🎵',m4a:'🎵',aac:'🎵',
+    pdf:'📄',doc:'📝',docx:'📝',txt:'📋',xls:'📊',xlsx:'📊',
+    exe:'⚙️',bat:'⚙️',zip:'📦',rar:'📦','7z':'📦',iso:'💿'
+  })[e] || '📄';
+}
+
+function fileUrl(fp) {
+  // Build /shared/C:/Users/... URL encoding each segment
+  const parts = fp.replace(/\\/g,'/').split('/');
+  return '/shared/' + parts.map(encodeURIComponent).join('/');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Tabs
+// ─────────────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.tab-body').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    activeTab = t.dataset.tab;
+    get('tab-' + activeTab).classList.add('active');
+
+    const filesOnly = activeTab === 'files';
+    get('qbar').classList.toggle('hidden', !filesOnly);
+    get('bc').classList.toggle('hidden', !filesOnly);
+    get('fab').classList.toggle('hidden', !filesOnly);
+
+    if (activeTab === 'launcher') loadLauncher();
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Navigation (History API — Back Button fix)
+// ─────────────────────────────────────────────────────────────────────────────
+function setQA(id) {
+  ['qa-home','qa-shared'].forEach(i => get(i)?.classList.remove('active'));
+  get(id)?.classList.add('active');
+}
+
+function nav(p) {
+  if (!p)                   setQA('qa-home');
+  else if (p==='SHARED_FOLDER') setQA('qa-shared');
+  history.pushState({ path: p }, '', p ? `?p=${encodeURIComponent(p)}` : '?');
+  fetchFiles(p);
+}
+
+window.addEventListener('popstate', e => {
+  const p = e.state?.path ?? '';
+  fetchFiles(p);
+  if (!p || p==='THIS_PC') setQA('qa-home');
+  else if (p==='SHARED_FOLDER') setQA('qa-shared');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  File browser
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchFiles(p) {
+  showLoader();
+  get('file-list').innerHTML = '';
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000); // 8s hard timeout
+
+    const res  = await fetch(`/api/files?path=${encodeURIComponent(p)}`, { signal: ctrl.signal });
+    clearTimeout(timer);
+
+    if (!res.ok) throw new Error(`Server error ${res.status}`);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+
+    currentPath = data.currentPath || '';
+    renderFiles(data.files || []);
+    renderBC(currentPath);
+  } catch (err) {
+    const msg = err.name === 'AbortError'
+      ? '⏱ Request timed out. Check server is running.'
+      : `⚠️ ${err.message}`;
+    get('file-list').innerHTML = `<div class="empty">${msg}</div>`;
+  } finally {
+    hideLoader();
+  }
+}
+
+function renderFiles(files) {
+  const list = get('file-list');
+  list.innerHTML = '';
+  if (!files.length) { list.innerHTML = '<div class="empty">This folder is empty.</div>'; return; }
+
+  // Dirs first, then alpha
+  files.sort((a,b) => {
+    if (a.isDirectory !== b.isDirectory) return a.isDirectory ? -1 : 1;
+    return (a.name||'').localeCompare(b.name||'');
+  });
+
+  files.forEach(f => {
+    const row = document.createElement('div');
+    row.className = `row${f.isDirectory?' dir':''}${f.isDrive?' drive':''}${f.isShortcut?' shortcut':''}`;
+
+    row.innerHTML = `
+      <div class="row-icon">${fileIcon(f)}</div>
+      <div class="row-info">
+        <div class="row-name">${f.name}</div>
+        ${f.size != null ? `<div class="row-sub">${fmtSize(f.size)}</div>` : ''}
+      </div>
+      <div class="acts">
+        <button class="abt" data-a="view" title="View">👁</button>
+        ${!f.isDirectory ? `<button class="abt" data-a="dl" title="Download">⬇</button>` : ''}
+        <button class="abt" data-a="info" title="Info">ℹ</button>
+      </div>`;
+
+    // Primary click
+    row.addEventListener('click', e => {
+      if (e.target.closest('.abt')) return;
+      f.isDirectory ? nav(f.path) : openFile(f);
+    });
+
+    row.querySelector('[data-a="view"]').addEventListener('click', e => {
+      e.stopPropagation();
+      f.isDirectory ? nav(f.path) : openFile(f);
+    });
+
+    row.querySelector('[data-a="dl"]')?.addEventListener('click', e => {
+      e.stopPropagation();
+      dlFile(f);
+    });
+
+    row.querySelector('[data-a="info"]').addEventListener('click', e => {
+      e.stopPropagation();
+      showProps(f);
+    });
+
+    list.appendChild(row);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  File actions
+// ─────────────────────────────────────────────────────────────────────────────
+const MEDIA = {
+  video: ['mp4','mkv','avi','mov','wmv','webm','m4v','ogv'],
+  audio: ['mp3','wav','flac','ogg','aac','m4a','opus','wma'],
+  image: ['jpg','jpeg','png','gif','bmp','webp','svg','ico','tiff']
+};
+
+function openFile(f) {
+  const ext = f.name.split('.').pop().toLowerCase();
+  const url = fileUrl(f.path);
+  if (MEDIA.video.includes(ext)) return openPlayer('video', f.name, url);
+  if (MEDIA.audio.includes(ext)) return openPlayer('audio', f.name, url);
+  if (MEDIA.image.includes(ext)) return openPlayer('image', f.name, url);
+  window.open(url, '_blank');
+}
+
+function dlFile(f) {
+  const a = document.createElement('a');
+  a.href = fileUrl(f.path); a.download = f.name; a.click();
+}
+
+function showProps(f) {
+  get('props-body').innerHTML =
+    `<b>Name:</b> ${f.name}<br>
+     <b>Type:</b> ${f.isDirectory?'Folder':'File'}<br>
+     <b>Size:</b> ${fmtSize(f.size)||'—'}<br>
+     <b>Path:</b> <span style="word-break:break-all">${f.path}</span>`;
+  get('props-ov').classList.remove('hidden');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Inline media player
+// ─────────────────────────────────────────────────────────────────────────────
+function openPlayer(type, name, url) {
+  const pv = get('pv'), pa = get('pa'), pi = get('pi');
+  [pv,pa,pi].forEach(e => { e.classList.add('hidden'); e.src=''; });
+  get('player-title').textContent = name;
+  get('player').classList.remove('hidden');
+  get('fab').classList.add('hidden');
+
+  if (type==='video') { pv.src=url; pv.classList.remove('hidden'); pv.load(); pv.play().catch(()=>{}); }
+  else if (type==='audio') { pa.src=url; pa.classList.remove('hidden'); pa.play().catch(()=>{}); }
+  else { pi.src=url; pi.classList.remove('hidden'); }
+}
+
+get('player-close').addEventListener('click', () => {
+  get('pv').pause(); get('pa').pause();
+  get('pv').src=''; get('pa').src=''; get('pi').src='';
+  get('player').classList.add('hidden');
+  if (activeTab==='files') get('fab').classList.remove('hidden');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Breadcrumbs
+// ─────────────────────────────────────────────────────────────────────────────
+function renderBC(cp) {
+  const bar = get('bc');
+  if (!cp || cp==='THIS_PC') { bar.innerHTML = `<span class="crumb cur">This PC</span>`; return; }
+  if (cp==='SHARED_FOLDER')  { bar.innerHTML = `<span class="crumb" onclick="nav('')">This PC</span><span class="sep">/</span><span class="crumb cur">Shared</span>`; return; }
+
+  const parts = cp.replace(/\\/g,'/').replace(/\/$/,'').split('/').filter(Boolean);
+  let html = `<span class="crumb" onclick="nav('')">This PC</span>`;
+  let acc  = '';
+  parts.forEach((part, i) => {
+    acc = (i===0 && part.endsWith(':')) ? part+'/' : acc + (acc.endsWith('/')? '' : '/') + part;
+    const isLast = i===parts.length-1;
+    const safe   = acc.replace(/'/g,"\\'");
+    html += `<span class="sep">/</span><span class="crumb${isLast?' cur':''}" onclick="nav('${safe}')">${part}</span>`;
+  });
+  bar.innerHTML = html;
+  bar.scrollLeft = bar.scrollWidth;
+}
+
+function showLoader() { get('loader').classList.remove('hidden'); }
+function hideLoader()  { get('loader').classList.add('hidden'); }
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Upload (XHR — real progress, no timeout issues)
+// ─────────────────────────────────────────────────────────────────────────────
+get('fab').addEventListener('click', () => get('file-input').click());
+
+get('file-input').addEventListener('change', async e => {
+  const files = Array.from(e.target.files);
+  if (!files.length) return;
+
+  if (sessionUploaded + files.reduce((s,f)=>s+f.size,0) > SESSION_LIMIT) {
+    alert('⚠️ 12 GB session limit reached.'); return;
+  }
+  if (!currentPath || currentPath==='THIS_PC') {
+    alert('Navigate into a folder first before uploading.'); return;
+  }
+
+  const wrap  = get('prog-wrap');
+  const fill  = get('prog-fill');
+  const label = get('prog-label');
+  wrap.classList.remove('hidden');
+
+  for (const file of files) {
+    label.textContent = `Uploading: ${file.name}`;
+    fill.style.width  = '0%';
+
+    await new Promise(resolve => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/upload');
+      xhr.setRequestHeader('X-Target-Path', encodeURIComponent(currentPath));
+      xhr.setRequestHeader('X-File-Name',   encodeURIComponent(file.name));
+      xhr.setRequestHeader('Content-Type',  'application/octet-stream');
+
+      xhr.upload.onprogress = ev => {
+        if (ev.lengthComputable) fill.style.width = Math.round(ev.loaded/ev.total*100)+'%';
+      };
+      xhr.onload = () => {
+        sessionUploaded += file.size;
+        label.textContent = xhr.status===200 ? `✅ ${file.name}` : `❌ Failed: ${file.name}`;
+        resolve();
+      };
+      xhr.onerror = () => { label.textContent = `❌ Network error`; resolve(); };
+      xhr.send(file);
+    });
+  }
+
+  setTimeout(() => wrap.classList.add('hidden'), 2500);
+  e.target.value = '';
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Remote Launcher
+// ─────────────────────────────────────────────────────────────────────────────
+async function loadLauncher() {
+  const list  = get('launcher-list');
+  const empty = get('launcher-empty');
+  list.innerHTML = '';
+  try {
+    const ctrl  = new AbortController();
+    setTimeout(() => ctrl.abort(), 6000);
+    const res  = await fetch('/api/apps', { signal: ctrl.signal });
+    const data = await res.json();
+    const apps = data.apps || [];
+
+    if (!apps.length) { empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+
+    const icon = { executable:'🎮', static:'📁', webapp:'⚡' };
+
+    apps.forEach(app => {
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = `
+        <div class="row-icon app-icon-bg">${icon[app.type]||'⚡'}</div>
+        <div class="row-info">
+          <div class="row-name">${app.name}</div>
+          <div class="row-sub">${app.type||'app'}</div>
+        </div>
+        <button class="abt launch" title="Launch on PC">🚀</button>`;
+
+      row.querySelector('.abt').addEventListener('click', async e => {
+        e.stopPropagation();
+        const btn = e.currentTarget;
+        btn.textContent='⏳'; btn.disabled=true;
+        try {
+          const r = await fetch('/api/launch',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({executablePath:app.path})
+          });
+          const d = await r.json();
+          btn.textContent = d.success?'✅':'❌';
+        } catch { btn.textContent='❌'; }
+        setTimeout(()=>{btn.textContent='🚀';btn.disabled=false;},2500);
+      });
+
+      list.appendChild(row);
+    });
+  } catch (err) {
+    empty.textContent = err.name==='AbortError' ? '⏱ Timed out' : '⚠️ '+err.message;
+    empty.classList.remove('hidden');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Screen Share (MJPEG)
+// ─────────────────────────────────────────────────────────────────────────────
+get('btn-screen').addEventListener('click', () => {
+  const img = get('screen-img');
+  const ph  = get('screen-ph');
+  img.src = '/api/screen?' + Date.now();
+  img.classList.remove('hidden');
+  ph.classList.add('hidden');
+});
+
+get('screen-img').addEventListener('error', () => {
+  get('screen-ph').innerHTML = `
+    <p style="color:var(--danger)">Screen share unavailable.<br>
+    On the PC run: <code>pip install Pillow</code></p>
+    <button class="start-btn" onclick="location.reload()">Retry</button>`;
+  get('screen-ph').classList.remove('hidden');
+  get('screen-img').classList.add('hidden');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Live TV (HLS via hls.js or native)
+// ─────────────────────────────────────────────────────────────────────────────
+get('btn-tv-watch').addEventListener('click', () => {
+  const url = get('tv-url-input').value.trim();
+  if (!url) { alert('Enter the broadcast URL from the desktop app.'); return; }
+  startHLS(url);
+});
+
+function startHLS(src) {
+  const vid = get('tv-player');
+  const ph  = get('tv-ph');
+
+  vid.style.display = 'block';
+  ph.style.display  = 'none';
+
+  if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+    const hls = new Hls({ lowLatencyMode: true });
+    hls.loadSource(src);
+    hls.attachMedia(vid);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => { vid.play().catch(()=>{}); });
+    hls.on(Hls.Events.ERROR, (_, d) => {
+      if (d.fatal) {
+        vid.style.display = 'none'; ph.style.display = '';
+        ph.innerHTML = `<p style="color:var(--danger)">⚠️ Stream error: ${d.details}<br>Make sure broadcast is running on the PC.</p>`;
+      }
+    });
+  } else if (vid.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS
+    vid.src = src;
+    vid.play().catch(()=>{});
+  } else {
+    ph.style.display = '';
+    vid.style.display = 'none';
+    ph.innerHTML = `<p style="color:var(--danger)">⚠️ HLS not supported in this browser. Try Safari or Chrome.</p>`;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Init
+// ─────────────────────────────────────────────────────────────────────────────
+const initPath = new URLSearchParams(location.search).get('p') || '';
+history.replaceState({ path: initPath }, '', initPath ? `?p=${encodeURIComponent(initPath)}` : '?');
+if (initPath === 'SHARED_FOLDER') setQA('qa-shared');
+fetchFiles(initPath);
+</script>
+</body>
+</html>

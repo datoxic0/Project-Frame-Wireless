@@ -1,0 +1,21 @@
+{
+  "name": "project-frame-wireless",
+  "version": "1.0.0",
+  "description": "Premium desktop application for local network sharing and remote app launching.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "serve-index": "^1.9.1"
+  },
+  "devDependencies": {
+    "electron": "^30.0.1",
+    "vite": "^5.2.11"
+  }
+}
